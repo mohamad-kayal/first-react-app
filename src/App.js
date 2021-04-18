@@ -1,22 +1,23 @@
 import React, { Component } from "react";
+
 import "./App.css";
 import Person from "./Person/Person";
 
 class App extends Component {
   state = {
     persons: [
-      { id: 'first', name: "John", age: "22" },
-      { id: 'second', name: "Max", age: "23" },
-      { id: 'third', name: "Jane", age: "20" },
+      { id: "first", name: "John", age: "22" },
+      { id: "second", name: "Max", age: "23" },
+      { id: "third", name: "Jane", age: "20" },
     ],
     showPersons: false,
     toggleButtonText: "Show Persons",
   };
 
   changeNameHandler = (event, personID) => {
-    const personIndex = this.state.persons.findIndex(
-      (p) => {return p.id === personID}
-    );
+    const personIndex = this.state.persons.findIndex((p) => {
+      return p.id === personID;
+    });
     const person = { ...this.state.persons[personIndex] };
     const persons = [...this.state.persons];
 
@@ -39,6 +40,15 @@ class App extends Component {
   };
   render() {
     let persons = null;
+    let style = {
+      backgroundColor: "green",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer",
+      ":hover": ''
+    };
+
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -55,11 +65,15 @@ class App extends Component {
           })}
         </div>
       );
+    } 
+    else {
+      style.backgroundColor = "red";
     }
     return (
       <div className="App">
         <h1>Hi there, This is my first react app!</h1>
         <button
+          style={style}
           onClick={() => {
             this.togglePersonsHandler();
           }}
